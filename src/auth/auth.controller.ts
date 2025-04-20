@@ -1,4 +1,4 @@
-import { Body, Controller, ParseIntPipe, Post } from "@nestjs/common";
+import { Body, Controller, Get, Param, ParseIntPipe, Post } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { AuthDto } from "./dto";
 
@@ -14,7 +14,19 @@ export class AuthController {
     }
 
     @Post('signin')
-    signin(): any { // Added explicit return type
+    signin() { // Added explicit return type
         return this.authService.signin();
+    }
+
+    // fetch all users
+    @Get('getusers')
+    getUsers() {
+        return this.authService.getUsers();
+    }
+
+    // fetch a single user
+    @Get('getuser/:id')
+    getUser(@Param('id', ParseIntPipe) id: number) {
+        return this.authService.getUser(id);
     }
 }
