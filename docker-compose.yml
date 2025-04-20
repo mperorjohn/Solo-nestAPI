@@ -1,0 +1,28 @@
+services:
+  dev-db:
+    image: postgres:15
+    container_name: dev-db
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    networks:
+      - my_pg_network
+
+  api:
+    build: .
+    depends_on:
+      - dev-db
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    networks:
+      - my_pg_network
+
+# ------------------------------------------------
+# Declare your network here—Compose will auto-create
+# ------------------------------------------------
+networks:
+  my_pg_network:
+    external: true
