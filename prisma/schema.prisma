@@ -6,8 +6,8 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
-}
+  output   = "./node_modules/@prisma/client"
+  }
 
 datasource db {
   provider = "postgresql"
@@ -22,8 +22,8 @@ model User {
   email String @unique
   hash String 
 
-  firstName String
-  lastName String
+  firstName String?
+  lastName String?
 }
 model Bookmark{
   id Int @id @default(autoincrement())
@@ -31,6 +31,6 @@ model Bookmark{
   updatedAt DateTime @updatedAt
 
   title String
-  description String
+  description String?
   link String
 }

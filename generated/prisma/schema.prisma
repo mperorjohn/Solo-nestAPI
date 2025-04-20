@@ -22,8 +22,8 @@ model User {
   email String @unique
   hash  String
 
-  firstName String
-  lastName  String
+  firstName String?
+  lastName  String?
 }
 
 model Bookmark {
@@ -32,6 +32,6 @@ model Bookmark {
   updatedAt DateTime @updatedAt
 
   title       String
-  description String
+  description String?
   link        String
 }
